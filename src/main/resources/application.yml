@@ -1,0 +1,20 @@
+server:
+  port: 8888
+  servlet:
+    context-path: /config-server
+spring:
+  application:
+    name: ead-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/YanVelasco/ead-config-server-repo
+          username: YanVelasco
+          password: ${TOKEN_GITHUB}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost
