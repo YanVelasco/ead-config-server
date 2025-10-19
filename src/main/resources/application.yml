@@ -11,9 +11,13 @@ spring:
           username: YanVelasco
           password: ${TOKEN_GITHUB}
 ead:
+  configServer:
+    username: config-server
+    password: 'ead123cs'
   serviceRegistry:
     username: service-registry
     password: 'ead123sr'
+
 eureka:
   client:
     serviceUrl:
