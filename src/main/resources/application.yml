@@ -1,5 +1,6 @@
 server:
   port: 8888
+
 spring:
   application:
     name: ead-config-server
@@ -10,13 +11,14 @@ spring:
           uri: https://github.com/YanVelasco/ead-config-server-repo
           username: YanVelasco
           password: ${TOKEN_GITHUB}
+
 ead:
   configServer:
-    username: config-server
-    password: 'ead123cs'
+    username: ${EAD_CONFIGSERVER_USERNAME:config-server}
+    password: ${EAD_CONFIGSERVER_PASSWORD:ead123cs}
   serviceRegistry:
-    username: service-registry
-    password: 'ead123sr'
+    username: ${EAD_SERVICEREGISTRY_USERNAME:service-registry}
+    password: ${EAD_SERVICEREGISTRY_PASSWORD:ead123sr}
 
 eureka:
   client:
@@ -24,3 +26,17 @@ eureka:
       defaultZone: 'http://${ead.serviceRegistry.username}:${ead.serviceRegistry.password}@localhost:8761/eureka'
   instance:
     hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,refresh
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    org.springframework.cloud.config.server: INFO
+    com.ead: INFO
